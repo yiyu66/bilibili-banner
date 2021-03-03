@@ -1,19 +1,27 @@
 <template>
   <a-layout id="components-layout-demo-custom-trigger">
     <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
-      <div class="logo" />
+      <div class="logo">上海石化</div>
       <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
         <a-menu-item key="1">
-          <a-icon type="user" />
-          <span>nav 1</span>
+          <a-icon type="pie-chart" />
+          <span>价值链表征</span>
         </a-menu-item>
         <a-menu-item key="2">
-          <a-icon type="video-camera" />
-          <span>nav 2</span>
+          <a-icon type="fund" />
+          <span>装置实时仿真</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <a-icon type="upload" />
-          <span>nav 3</span>
+          <a-icon type="rise" />
+          <span>生产计划优化</span>
+        </a-menu-item>
+        <a-menu-item key="4">
+          <a-icon type="sliders" />
+          <span>原油切割测算</span>
+        </a-menu-item>
+        <a-menu-item key="5">
+          <a-icon type="area-chart" />
+          <span>数据分析报表</span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -30,7 +38,7 @@
           margin: '24px 16px',
           padding: '24px',
           background: '#fff',
-          minHeight: '280px'
+          minHeight: '1000px',
         }"
       >
         Content
@@ -43,9 +51,9 @@
 export default {
   data() {
     return {
-      collapsed: false
+      collapsed: false,
     }
-  }
+  },
 }
 </script>
 
@@ -63,8 +71,8 @@ export default {
 }
 
 #components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
+  height: auto;
+  background: rgba(235, 237, 240, 0.959);
   margin: 16px;
 }
 </style>
