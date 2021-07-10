@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import menu from '../components/menu.vue'
 import Home from '../views/Home.vue'
-import Autumn from '../views/Bilibili/Autumn.vue'
+import Autumn from '../views/Bilibili/Autumn/Autumn.vue'
 
 Vue.use(VueRouter)
 
