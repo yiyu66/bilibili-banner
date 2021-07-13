@@ -50,22 +50,21 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       // imgWinkNow: require('./2-bi.png'),
       // imgWink: [require('./2.png'), require('./2-bi.png'), require('./2-zha.png')]
     }
   },
-  created () {
+  created() {
     document.title = this.$route.meta.title
-    console.log('images');
+    console.log('images')
   },
-  mounted () {
-     this.winter()
-
+  mounted() {
+    this.winter()
   },
   methods: {
-    winter () {
+    winter() {
       const header = document.querySelector('header')
 
       let StartPosition = 0
@@ -78,22 +77,28 @@ export default {
       //   image.style.setProperty('--offset', `${startOffset}px`)
       //   image.style.setProperty('--blur', `${blurValue}px`)
       // }
-      document.getElementById('winterHeader').addEventListener('mouseover', (e) => {
-        StartPosition = e.clientX
-        header.classList.add('moving')
-        console.log('进入了画面，初始位置为' + StartPosition);
-      })
-      document.getElementById('winterHeader').addEventListener('mousemove', (e) => {
-        let percentage = (e.clientX - StartPosition) / window.outerWidth + 0.5
-        header.style.setProperty('--percentage', percentage)
-      })
+      document
+        .getElementById('winterHeader')
+        .addEventListener('mouseover', (e) => {
+          StartPosition = e.clientX
+          header.classList.add('moving')
+          console.log('进入了画面，初始位置为' + StartPosition)
+        })
+      document
+        .getElementById('winterHeader')
+        .addEventListener('mousemove', (e) => {
+          let percentage = (e.clientX - StartPosition) / window.outerWidth + 0.5
+          header.style.setProperty('--percentage', percentage)
+        })
       // 离开区域时恢复原状，这里模拟鼠标拉到中间位置
-      document.getElementById('winterHeader').addEventListener('mouseleave', () => {
-        header.classList.remove('moving')
-        header.style.setProperty('--percentage', 0.5)
-      })
-    }
-  }
+      document
+        .getElementById('winterHeader')
+        .addEventListener('mouseleave', () => {
+          header.classList.remove('moving')
+          header.style.setProperty('--percentage', 0.5)
+        })
+    },
+  },
 }
 </script>
 
