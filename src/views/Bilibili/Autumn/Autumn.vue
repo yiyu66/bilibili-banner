@@ -29,13 +29,12 @@
 export default {
   data () {
     return {
-      imgWinkNow: require('./2-bi.png'),
+      imgWinkNow: require('./2.png'),
       imgWink: [require('./2.png'), require('./2-bi.png'), require('./2-zha.png')]
     }
   },
   created () {
     document.title = this.$route.meta.title
-    console.log('images');
   },
   mounted () {
     this.Autumn()
@@ -58,7 +57,6 @@ export default {
       }
       document.getElementById('AutumnImages').addEventListener('mouseover', (e) => {
         StartPosition = e.clientX / window.outerWidth
-        console.log('进入了画面，初始位置为' + StartPosition);
       })
       document.getElementById('AutumnImages').addEventListener('mousemove', (e) => {
         movePercent = (e.clientX / window.outerWidth) - StartPosition // 鼠标位移量
