@@ -79,14 +79,14 @@ export default {
       // }
       document
         .getElementById('winterHeader')
-        .addEventListener('mouseover', (e) => {
+        .addEventListener('mouseover', e => {
           StartPosition = e.clientX
           header.classList.add('moving')
           console.log('进入了画面，初始位置为' + StartPosition)
         })
       document
         .getElementById('winterHeader')
-        .addEventListener('mousemove', (e) => {
+        .addEventListener('mousemove', e => {
           let percentage = (e.clientX - StartPosition) / window.outerWidth + 0.5
           header.style.setProperty('--percentage', percentage)
         })
@@ -97,8 +97,8 @@ export default {
           header.classList.remove('moving')
           header.style.setProperty('--percentage', 0.5)
         })
-    },
-  },
+    }
+  }
 }
 </script>
 
