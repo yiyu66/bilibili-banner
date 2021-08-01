@@ -5,11 +5,12 @@ import Autumn from '../views/Bilibili/Autumn/Autumn.vue'
 import Winter from '../views/Bilibili/Winter/Winter.vue'
 import Spring from '../views/Bilibili/Spring/Spring.vue'
 import Summer from '../views/Bilibili/Summer/Summer.vue'
-
+import Test from '../views/Test.vue'
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/', redirect: '/bilibili/Summer' },
+  { path: '/Test', component: Test },
   { path: '/Home', component: Home },
   { path: '/bilibili/Autumn/', meta: { title: 'Bilibili秋' }, component: Autumn },
   { path: '/bilibili/Winter/', meta: { title: 'Bilibili冬' }, component: Winter },
