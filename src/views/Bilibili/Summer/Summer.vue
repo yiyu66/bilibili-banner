@@ -1,16 +1,19 @@
 <template>
   <div class="bili-banner">
     <div class="animated-banner">
-      <div class="layer" id="videoLayer">
+      <div class="layer" id="layer">
         <video
+          class="summerVideo"
           autoplay="autoplay"
           loop=""
-          src="./video-summer3.webm"
+          :src="videoSrc"
           width="1851"
           height="158"
           data-height="180"
           data-width="2104"
         ></video>
+        <!-- 原站视频链接之一 -->
+        <!-- src="blob:https://www.bilibili.com/848fc61b-4c32-4383-9bf4-ba9720342c4a" -->
         <!-- style="object-fit: cover; transform: scale(1) translate(44px, 0px) rotate(0deg);" -->
       </div>
     </div>
@@ -26,50 +29,70 @@
 export default {
   data() {
     return {
-      // imgWinkNow: require('./2-bi.png'),
-      // imgWink: [require('./2.png'), require('./2-bi.png'), require('./2-zha.png')]
+      videoSrc: require('./video-summer-daytime1.webm'),
+      summer_daytime: [
+        require('./video-summer-daytime1.webm'),
+        require('./video-summer-daytime2.webm'),
+        require('./video-summer-daytime3.webm'),
+        require('./video-summer-daytime4.webm'),
+      ],
+      summer_night: [
+        require('./video-summer-night1.webm'),
+        // require('./video-summer-night2.webm'),
+        // require('./video-summer-night3.webm'),
+      ],
+      summer_dusk: [
+        require('./video-summer-dusk1.webm'),
+        require('./video-summer-dusk2.webm'),
+      ],
     }
   },
+  beforeCreate() {},
   created() {
     document.title = this.$route.meta.title
-    console.log('images')
   },
   mounted() {
+    this.videoSrcSelect()
     this.summer()
   },
   methods: {
+    videoSrcSelect() {
+      var myDate = new Date()
+      let DateNow = myDate.getHours()
+      console.log(Math.floor(Math.random()*this.summer_dusk.length));
+      if (DateNow > 6 && DateNow <= 16) {
+        // 白天
+        this.videoSrc = this.summer_daytime[Math.floor(Math.random()*this.summer_daytime.length)]
+      } else if (DateNow > 16 && DateNow < 20) {
+        // 黄昏
+        this.videoSrc = this.summer_dusk[Math.floor(Math.random()*this.summer_dusk.length)]
+      } else {
+        // 晚上
+        this.videoSrc = this.summer_night[Math.floor(Math.random()*this.summer_night.length)]
+      }
+    },
     summer() {
-      let layer = document.getElementById('videoLayer')
+      const videoLayer = document.querySelector('video')
       let StartPosition = 0
       let offset = 0
-      // let movePercent = 0
-      // let startOffset = 5
-      //初始化模糊度
-      // for (let [index, image] of images.entries()) {
-      //   startOffset *= 1.3  //后一张图片偏移量是前一张的1.3倍
-      //   blurValue = (Math.pow((index / images.length), 2) * blur)
-      //   image.style.setProperty('--offset', `${startOffset}px`)
-      //   image.style.setProperty('--blur', `${blurValue}px`)
-      // }
-      document.getElementById('videoLayer').addEventListener('mouseover', e => {
+
+      videoLayer.addEventListener('mouseover', (e) => {
         StartPosition = e.clientX
-        layer.classList.add('moving')
-        console.log('进入了画面，初始位置为' + StartPosition)
+        videoLayer.style.transition = 'none'
       })
-      document.getElementById('videoLayer').addEventListener('mousemove', e => {
+
+      videoLayer.addEventListener('mousemove', (e) => {
         let movePercent = (e.clientX - StartPosition) / window.outerWidth // 鼠标位移量
-        offset = movePercent * 20 + 35
-        layer.style.setProperty('--offset', `${offset}px`)
+        offset = movePercent * 20 + 0
+        videoLayer.style.setProperty('--offset', `${offset}px`)
       })
-      // 离开区域时恢复原状，这里模拟鼠标拉到中间位置
-      document
-        .getElementById('videoLayer')
-        .addEventListener('mouseleave', () => {
-          layer.classList.remove('moving')
-          layer.style.setProperty('--offset', `35px`)
-        })
-    }
-  }
+
+      videoLayer.addEventListener('mouseleave', () => {
+        videoLayer.style.transition = '.5s all'
+        videoLayer.style.setProperty('--offset', `0px`)
+      })
+    },
+  },
 }
 </script>
 
@@ -99,15 +122,17 @@ export default {
 
 .animated-banner > .layer {
   position: absolute;
+  margin: auto;
   left: 0;
+  right: 0;
+  bottom: 0;
   top: 0;
   height: 100%;
-  width: 100%;
+  width: 110%;
   display: flex;
   align-items: center;
   justify-content: center;
-  --offset: 35px;
-  transform: translatex(var(--offset));
+  /* --offset: -35px; */
 }
 
 .b-logo {
@@ -125,5 +150,14 @@ export default {
 }
 .logo-img {
   height: 100%;
+}
+.layer > .summerVideo {
+  position: absolute;
+  margin: auto;
+  height: 100%;
+  width: 110%;
+  object-fit: cover;
+  transform: translatex(var(--offset));
+  transition: 0.5s all;
 }
 </style>
